@@ -13,7 +13,7 @@ NextAuth does support using your own managed credentials (storing your own users
 Begin by installing `next-auth`.
 
 ```
-yarn add next-auth
+npm i next-auth
 ```
 
 Unlike most of our recent tooling, this must exist during the runtime of our application, so it cannot be a `devDependency`.

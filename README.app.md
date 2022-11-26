@@ -82,7 +82,7 @@ Before we get started I would very highly recommend the [Tailwind CSS IntelliSen
 Now, let's begin by running the following commands in the root directory of our project:
 
 ```
-yarn add -D tailwindcss postcss autoprefixer
+npm i -D tailwindcss postcss autoprefixer
 ```
 
 Tailwind will compile into regular CSS for your final build so there is no need for it to exist as a runtime dependency in your project.
@@ -182,7 +182,7 @@ Without Tailwind installed and configured they won't do anything, but with Tailw
 The nice thing is that Next.js will handle all the build process for you, you don't even have to think about it. Just start up your dev server (you may need to reboot to pick it up if it was already running):
 
 ```
-yarn dev
+npm run dev
 ```
 
 And go to [http://localhost:3000](http://localhost:3000).
@@ -198,13 +198,13 @@ _If you don't have Storybook installed and configured already, remember to read 
 Start by adding the PostCSS addon for Storybook:
 
 ```
-yarn add -D @storybook/addon-postcss
+npm i -D @storybook/addon-postcss
 ```
 
 OPTIONAL: If you want to keep using CSS modules as well:
 
 ```
-yarn add -D storybook-css-modules-preset
+npm i -D storybook-css-modules-preset
 ```
 
 Then update your `.storybook/main.js` file to:
@@ -349,7 +349,7 @@ Run a find and replace for each instance of `BaseTemplate` and replace with `Sea
 And in Storybook with:
 
 ```
-yarn storybook
+npm run storybook
 ```
 
 ![Storybook Search Template](https://res.cloudinary.com/dqse2txyi/image/upload/v1649472567/blogs/nextjs-app-tailwind/storybook-search-template_g0xxfk.png)
@@ -717,7 +717,7 @@ There's two new Next.js specific components showcased here that I'd like to cove
 
 - [Link](https://nextjs.org/docs/api-reference/next/link) - Next provides a special kind of link that is used as a superpowered version of the `<a>` anchor tag. You still use the anchor tag, but by wrapping it in a `<Link>` with the `href`, Next will handle a click to that link in a special way that preserves state in your application without a full page load and refresh (among other benefits described in the docs)
 
-We have also taken advantage of the `locale` value in the [useRouter](https://nextjs.org/docs/api-reference/next/router#userouter) hook to handling efficiently toggling back and forth between locales. Try it yourself (you'll need to run the `yarn dev` server to test it since you won't have access to routing in Storybook), but it works great for toggling back and forth between languages.
+We have also taken advantage of the `locale` value in the [useRouter](https://nextjs.org/docs/api-reference/next/router#userouter) hook to handling efficiently toggling back and forth between locales. Try it yourself (you'll need to run the `npm run dev` server to test it since you won't have access to routing in Storybook), but it works great for toggling back and forth between languages.
 
 Remember that our app's available locales can be customized in `next.config.js` on the `i18n` field. Right now we don't have any translation in place, so only the URL will switch (updating the text copy for `i18n` support will be a topic of a future tutorial.)
 
@@ -744,7 +744,7 @@ Each of these can be individually managed though with mock functions that provid
 Here's how to support Next Router in Storybook. Start by installing the addon and [reading its documentation](https://storybook.js.org/addons/storybook-addon-next-router).
 
 ```
-yarn add -D storybook-addon-next-router
+npm i -D storybook-addon-next-router
 ```
 
 Then update your config files:
@@ -937,7 +937,7 @@ const PrimaryLayout: React.FC<IPrimaryLayout> = ({
 export default PrimaryLayout;
 ```
 
-Now start your dev server with `yarn dev` and go to [http://localhost:3000/results](http://localhost:3000/results)
+Now start your dev server with `npm run dev` and go to [http://localhost:3000/results](http://localhost:3000/results)
 
 ![Results Page](https://res.cloudinary.com/dqse2txyi/image/upload/v1649535428/blogs/nextjs-app-tailwind/results-page_sqoln5.png)
 
@@ -1243,7 +1243,7 @@ First of all, it's important to be aware that `getServerSideProps` is a special 
 
 Think of that as a good thing, we are talking about data fetching from our API, at this point we have moved away from the real purpose of Storybook. Ideally it should not be making API calls for data. Of course we could create a mock version of our `getServerSideProps` function and configure Storybook to use it, but that's beyond the scope of this tutorial.
 
-For now, while we are working on the back end we will be doing all our testing on the development build by running `yarn dev`.
+For now, while we are working on the back end we will be doing all our testing on the development build by running `npm run dev`.
 
 Just before you run the dev server, let's talk about what's happening. There's a lot going on here so I've add four numbered 1-2-3-4 comments in the code above to talk about.
 
@@ -1258,7 +1258,7 @@ Just before you run the dev server, let's talk about what's happening. There's a
 Now we are ready to run
 
 ```
-yarn dev
+npm run dev
 ```
 
 And open the URL to [http://localhost:3000/results?search=dog](http://localhost:3000/results?search=dog)
@@ -1333,7 +1333,7 @@ I've added some numbered comments on the code for reference.
 
 I've also added a silly _FEATURE COMING SOON!_ alert to the _I'm Feeling Lucky_ button, but don't hold your breath on that one.
 
-I think we're finally ready to take the entire app for a test drive. Start the dev server with `yarn dev` and visit [http://localhost:3000](http://localhost:3000)
+I think we're finally ready to take the entire app for a test drive. Start the dev server with `npm run dev` and visit [http://localhost:3000](http://localhost:3000)
 
 ![App Final 01](https://res.cloudinary.com/dqse2txyi/image/upload/v1649653441/blogs/nextjs-app-tailwind/app-final-1_e5v1xk.png)
 
@@ -1639,7 +1639,7 @@ export const decorators = [
 ];
 ```
 
-Thats it! Now run `yarn dev` and load [http://localhost:3000](http://localhost:3000)
+Thats it! Now run `npm run dev` and load [http://localhost:3000](http://localhost:3000)
 
 When you click on the "Sign In" button if all has gone correct it will toggle to a "Sign Out" which mimics the function of having logged into the site. Doing this is basic React behavior to toggle a button state.
 

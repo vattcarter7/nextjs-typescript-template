@@ -47,12 +47,12 @@ npx create-next-app --ts nextjs-fullstack-app-template
 cd nextjs-fullstack-app-template
 ```
 
-First we will test to make sure the app is working. We're going to be using `yarn` for this example, but you could just as easily use NPM if you choose.
+First we will test to make sure the app is working. We're going to be using `npm` for this example, but you could just as easily use NPM if you choose.
 
 ```
-yarn install
+npm i
 
-yarn dev
+npm run dev
 ```
 
 You should see the demo app available on [http://localhost:3000](http://localhost:3000)
@@ -62,7 +62,7 @@ You should see the demo app available on [http://localhost:3000](http://localhos
 Also recommended to run
 
 ```
-yarn build
+npm run build
 ```
 
 To ensure you can successfully do a production build of the project. It's recommended (but not required) to close your dev server when running a Next.js build. Most of the time there is no issue but occasionally the build can put your dev server in a weird state that requires a restart.
@@ -76,7 +76,7 @@ We would like for all developers working on this project to use the same Node en
 - `.nvmrc` - Will tell other uses of the project which version of Node is used
 - `.npmrc` - Will tell other users of the project which package manager is used
 
-We are using `Node v14 Fermium` and `yarn` for this project so we set those values like so:
+We are using `Node v14 Fermium` for this project so we set those values like so:
 
 `.nvmrc`
 
@@ -91,30 +91,6 @@ engine-strict=true
 ```
 
 The reason we are using v14 instead of v16 for Node is that later in the tutorial we will be deploying on Vercel which unfortunately still does not support Node 16. Perhaps by the time you read this tutorial it might. You can follow the progress [here](https://github.com/vercel/community/discussions/37).
-
-You can check your version of Node with `node --version` and make sure you are setting the correct one. A list of Node version codenames can be found [here](https://github.com/nodejs/Release/blob/main/CODENAMES.md)
-
-Note that the use of `engine-strict` didn't specifically say anything about `yarn`, we do that in `package.json`:
-
-`package.json`
-
-```json
-  "name": "nextjs-fullstack-app-template",
-  "author": "YOUR_NAME",
-  "description": "A tutorial and template for creating a production-ready fullstack Next.js application",
-  "version": "0.1.0",
-  "private": true,
-  "license" : "MIT"
-  "homepage": "YOUR_GIT_REPO_URL"
-  "engines": {
-    "node": ">=14.0.0",
-    "yarn": ">=1.22.0",
-    "npm": "please-use-yarn"
-  },
-  ...
-```
-
-The `engines` field is where you specify the specific versions of the tools you are using. You can also fill in your personal details if you choose.
 
 ## Git Setup
 
@@ -203,7 +179,7 @@ I find that scenario comes up often when you are working on a feature and want t
 You can test out your config by running:
 
 ```
-yarn lint
+npm run lint
 ```
 
 You should get a message like:
@@ -230,7 +206,7 @@ Prettier will take care of automatically formatting our files for us. Let's add 
 It's only needed during development, so I'll add it as a `devDependency` with `-D`
 
 ```
-yarn add -D prettier
+npm i -D prettier
 ```
 
 I also recommend you get the [Prettier VS Code extension](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) so that VS Code can handle the formatting of the files for you and you don't need to rely on the command line tool. Having it installed and configured in your project means that VSCode will use your project's settings, so it's still necessary to add it here.
@@ -253,7 +229,6 @@ Those values are entirely at your discretion as to what is best for your team an
 `.prettierignore`
 
 ```
-.yarn
 .next
 dist
 node_modules
@@ -276,7 +251,7 @@ Now we add a new script to `package.json` so we can run Prettier:
 You can now run
 
 ```
-yarn prettier
+npm run prettier
 ```
 
 to automatically format, fix and save all files in your project you haven't ignored. By default my formatter updated about 5 files. You can see them in your list of changed files in the source control tab on the left of VS Code.
@@ -294,7 +269,7 @@ Husky is a tool for running scripts at different stages of the git process, for 
 To install Husky run
 
 ```
-yarn add -D husky
+npm i -D husky
 
 npx husky install
 ```
@@ -318,17 +293,17 @@ This will ensure Husky gets installed automatically when other developers run th
 To create a hook run
 
 ```
-npx husky add .husky/pre-commit "yarn lint"
+npx husky add .husky/pre-commit "npm run lint"
 ```
 
-The above says that in order for our commit to succeed, the `yarn lint` script must first run and succeed. "Succeed" in this context means no errors. It will allow you to have warnings (remember in the ESLint config a setting of 1 is a warning and 2 is an error in case you want to adjust settings).
+The above says that in order for our commit to succeed, the `npm run lint` script must first run and succeed. "Succeed" in this context means no errors. It will allow you to have warnings (remember in the ESLint config a setting of 1 is a warning and 2 is an error in case you want to adjust settings).
 
 Let's create a new commit with the message `ci: implement husky`. If all has been setup properly your lint script should run before the commit is allowed to occur.
 
 We're going to add another one:
 
 ```
-npx husky add .husky/pre-push "yarn build"
+npx husky add .husky/pre-push "npm run build"
 ```
 
 The above ensures that we are not allowed to push to the remote repository unless our code can successfully build. That seems like a pretty reasonable condition doesn't it? Feel free to test it by committing this change and trying to push.
@@ -338,7 +313,7 @@ The above ensures that we are not allowed to push to the remote repository unles
 Lastly we are going to add one more tool. We have been following a standard convention for all our commit messages so far, let's ensure that everyone on the team is following them as well (including ourselves!). We can add a linter for our commit messages:
 
 ```
-yarn add -D @commitlint/config-conventional @commitlint/cli
+npm i -D @commitlint/config-conventional @commitlint/cli
 ```
 
 To configure it we will be using a set of standard defaults, but I like to include that list explicitly in a `commitlint.config.js` file since I sometimes forget what prefixes are available:
@@ -496,7 +471,7 @@ In addition to this, or if you are not using VS Code, we can also set up some he
 First we will install the [cross-env](https://www.npmjs.com/package/cross-env) which will; be necessary to set environment variables if you have teammates working on different environments (Windows, Linux, Mac, etc).
 
 ```
-yarn add -D cross-env
+npm i -D cross-env
 ```
 
 With that package installed we can update our `package.json` `dev` script to look like the following:
@@ -616,7 +591,7 @@ Before we run it we need to make sure we are using webpack5. Add the following t
 Then run
 
 ```
-yarn install
+npm i
 ```
 
 To ensure webpack5 is installed.
@@ -703,7 +678,7 @@ There are a few personal preferences in the above, but you can configure it how 
 Now we are ready to test it. Run:
 
 ```
-yarn storybook
+npm run storybook
 ```
 
 If all goes well you'll see a message in your console that looks like:
@@ -847,14 +822,14 @@ The goal here is to create a consistent easily copy/paste-able pattern of compon
 Let's try this one out. Run:
 
 ```
-yarn storybook
+npm run storybook
 ```
 
 If all goes well you will be greeted by your fine looking base component (if not I encourage you to revisit the previous section and check if you missed any of the configurations).
 
 ![Storybook Base Template](https://res.cloudinary.com/dqse2txyi/image/upload/v1649133832/blogs/nextjs-fullstack-app-template/storybook-base-template_uwna7h.png)
 
-Now that we're starting to create more files it's good to get into the habit of running `yarn lint` before doing your commits to make sure everything is clean and ready to go. I'm going to make a commit with message `build: create BaseTemplate component`.
+Now that we're starting to create more files it's good to get into the habit of running `npm run lint` before doing your commits to make sure everything is clean and ready to go. I'm going to make a commit with message `build: create BaseTemplate component`.
 
 ## Using the Component Template
 
@@ -1109,7 +1084,7 @@ export default Home;
 Let's take a look at the final masterpiece with:
 
 ```
-yarn dev
+npm run dev
 ```
 
 ![Final Masterpiece](https://res.cloudinary.com/dqse2txyi/image/upload/v1649137105/blogs/nextjs-fullstack-app-template/final-masterpiece_cbpxu1.png)
@@ -1416,7 +1391,7 @@ I have also changed the story titles from `templates/...` to `layouts/...`.
 Finally we can test it out. Save and run
 
 ```
-yarn dev
+npm run dev
 ```
 
 Click between the two routes on the sidebar (Home and About) to toggle between pages. Note that the layouts used will persist without needing to reload (as was our intention) and you are left with a super fast and snappy experience.
@@ -1428,7 +1403,7 @@ Click between the two routes on the sidebar (Home and About) to toggle between p
 On the Storybook side, we can even view and test out layout components independent of the application. The `PrimaryLayout` isn't too useful without content inside of it, but the sidebar is quite nice to have.
 
 ```
-yarn storybook
+npm run storybook
 ```
 
 ![Storybook Sidebar](https://res.cloudinary.com/dqse2txyi/image/upload/v1649191018/blogs/nextjs-fullstack-app-template/storybook-sidebar_actilj.png)
@@ -1447,10 +1422,6 @@ Deploying on Vercel as a hobby user is completely free. To begin we will [create
 
 Once logged in, click `+ New Project` and give Vercel access to your Github repositories. You can give global access, or you can select only the repository you want to deploy. I am going to select this repository called `nextjs-fullstack-app-template`.
 
-Once you have selected it you'll need to configure it. In the `Build and Output Settings` section make sure you replace the default NPM commands with your yarn commands (unless you are using NPM).
-
-![Next Configure](https://res.cloudinary.com/dqse2txyi/image/upload/v1649164443/blogs/nextjs-fullstack-app-template/next-configure_dtywld.png)
-
 We have not used any environment variables yet so no need to add any.
 
 Once that's it just click `Deploy` and you're done! It's that easy.
@@ -1461,9 +1432,7 @@ _(The screenshot above is a bit out of date, I originally wrote the deployment s
 
 Not only is your site deployed now, it will continue to get re-deployed automatically every time you commit to your primary branch. If you don't want this behavior, then it's easy to configure in the Vercel dashboard.
 
-The nice thing is that you already configured your `yarn build` command to ensure a working production build before you can push you code, so you can push with confidence in presuming your deployment will be successful.
-
-The only thing you need to keep in mind are the differences between your two environments. It's still possible for your build to succeed locally but fail on Vercel if for example your scripts are different (using NPM instead of yarn or vice versa) or more commonly if you are missing environment variables.
+The nice thing is that you already configured your `npm run build` command to ensure a working production build before you can push you code, so you can push with confidence in presuming your deployment will be successful.
 
 We will be adding `env` values in future tutorials so you will need to make sure those values are configured in both your local and production environment, since they are secrets and should never be committed to a public (or even private if can be avoided) repository.
 
