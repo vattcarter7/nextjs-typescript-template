@@ -1,11 +1,3 @@
-All code from this tutorial as a complete package is available in [this repository](https://github.com/alexeagleson/nextjs-fullstack-app-template).
-
-If you find this tutorial helpful, please share it with your friends and colleagues! For more like it you can subscribe on [Youtube](https://www.youtube.com/channel/UCV5YqK3AaInd3lYFQqlp7Lw) or follow me on [Twitter](https://twitter.com/eagleson_alex).
-
-This tutorial is available as a video lesson if you prefer that format:
-
-{% youtube Iu5aZDqZt8E %}
-
 ## Table of Contents
 
 1. [What is Next.js?](#what-is-nextjs)
